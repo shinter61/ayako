@@ -17,15 +17,17 @@ with open('./0517_170409.csv') as f:
     l = np.array(l)
 
     # axis = 1 なら列を削除
+    # 先頭の列を削除
     l = np.delete(l, 0, axis=1)
 
-    # csvデータの中の空文字を「0」に置き換える
-    l[np.where(l == '')] = 0
+    # 末尾の空文字の列を削除
+    l = np.delete(l, 192, axis=1)
 
     # 文字列型のnumpy配列をfloat型のnumpy配列に変換
     temperature_data = l.astype(float)
 
-x = np.linspace(1, 193, 193)
+# 1 から 192 までの間を、192等分して、配列にする
+x = np.linspace(1, 192, 192)
 y = np.linspace(1, 256, 256)
 X, Y = np.meshgrid(x, y)
 
