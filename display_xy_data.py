@@ -1,6 +1,8 @@
 import csv
 import numpy as np
 
+temperature_data = []
+
 with open('./0517_170409.csv') as f:
   reader = csv.reader(f)
 
@@ -16,7 +18,7 @@ with open('./0517_170409.csv') as f:
   # axis = 1 なら列を削除
   temperature_data = np.delete(l, 0, axis=1)
 
-  # 二次元配列
+with open('./result.txt', mode='w') as f:
   for x in range(192):
     for y in range(256):
-       print(f'x: {x + 1}, y: {y + 1}, value: {temperature_data[y][x]}')
+       f.write(f'x: {x + 1}, y: {y + 1}, value: {temperature_data[y][x]}\n')
